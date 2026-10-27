@@ -1,0 +1,35 @@
+#!name=悦通行去广告
+#!desc=去除悦通行(地铁乘车码APP)开屏广告、首页弹窗/Banner广告，屏蔽百合广告SDK(baihemob)与云析(yunxish/CPC)统计上报；通过清空广告位配置接口实现无广告，不影响乘车码、定位、支付等核心功能。
+#!category=去广告
+#!homepage=https://github.com/ding3700/ytxqg
+#!icon=https://media.ifbapp.com/favicon.ico
+#!arguments=
+
+[MITM]
+hostname = %APPEND% v.110route.cn
+
+[URL Rewrite]
+# —— 百合第三方广告 SDK（ad2 / init2 / infoConfig / 错误上报）——
+^https?://ad\.baihemob\.com/ REJECT
+^https?://inner\.baihemob\.com/ REJECT
+
+# —— CPC 广告配置拉取（iggrowth / yunxish）——
+^https?://cpc-service-square\.iggrowth\.cn/ REJECT
+^https?://cpc-service-square\.yunxish\.com/ REJECT
+
+# —— 云析(yunxish) 广告/统计/日志上报 ——
+^https?://api\.yunxish\.com/ REJECT
+^https?://service\.yunxish\.com/ REJECT
+^https?://logrcv\.yunxish\.com/ REJECT
+^https?://usr-api\.yunxish\.com/ REJECT
+^https?://tracelog-debug\.yunxish\.com/ REJECT
+
+# —— 悦通行自家埋点打点（dot.gif / time_duration.gif）——
+^https?://yzapp-hit\.110route\.com/ REJECT
+
+# —— 第三方统计/监控脚本 ——
+^https?://static\.shunchangzhixing\.com/ REJECT
+
+[Script]
+# 拦截悦通行走位/开屏/Banner广告位配置，清空为"无广告"
+http-response ^https?://v\.110route\.cn/go/ytx/index/tagad requires-body=true, script-path=https://raw.githubusercontent.com/ding3700/ytxqg/main/ytx_ad_cleaner.js, timeout=10, tag=悦通行广告位清理
