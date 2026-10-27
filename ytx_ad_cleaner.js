@@ -9,8 +9,9 @@
  */
 
 function main(body) {
+    var json;
     try {
-        var json = JSON.parse(body);
+        json = JSON.parse(body);
     } catch (e) {
         return {};
     }
