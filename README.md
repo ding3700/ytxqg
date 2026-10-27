@@ -1,45 +1,37 @@
-# 悦通行去广告 Loon 插件
+﻿# 鎮﹂€氳鍘诲箍鍛?Loon 鎻掍欢
 
-针对 **悦通行**（地铁乘车码 / 互通乘车 APP，域名 `*.ifbapp.com` / `*.110route.cn`）的 Loon 去广告插件。
+閽堝 **鎮﹂€氳**锛堝湴閾佷箻杞︾爜 / 浜掗€氫箻杞?APP锛屽煙鍚?`*.ifbapp.com` / `*.110route.cn`锛夌殑 Loon 鍘诲箍鍛婃彃浠躲€?
+## 鍔熻兘
 
-## 功能
+- 鍘婚櫎**寮€灞忓箍鍛?*銆侀椤?*寮圭獥骞垮憡**銆?*Banner / 淇℃伅娴佸箍鍛婁綅**
+- 灞忚斀**鐧惧悎骞垮憡 SDK**锛坄*.baihemob.com`锛?- 灞忚斀 **CPC 骞垮憡閰嶇疆**锛坄cpc-service-square.iggrowth.cn` / `*.yunxish.com`锛?- 灞忚斀鑷鍩嬬偣鎵撶偣锛坄yzapp-hit.110route.com/dot.gif`锛?- **涓嶅奖鍝?*涔樿溅鐮併€佸畾浣嶃€佹壂鐮併€佹敮浠樸€佹秷鎭瓑鏍稿績鍔熻兘
 
-- 去除**开屏广告**、首页**弹窗广告**、**Banner / 信息流广告位**
-- 屏蔽**百合广告 SDK**（`*.baihemob.com`）
-- 屏蔽 **CPC 广告配置**（`cpc-service-square.iggrowth.cn` / `*.yunxish.com`）
-- 屏蔽自家埋点打点（`yzapp-hit.110route.com/dot.gif`）
-- **不影响**乘车码、定位、扫码、支付、消息等核心功能
+## 鍘熺悊
 
-## 原理
-
-基于抓包分析：
-
-| 接口 / 域名 | 作用 | 处理方式 |
+鍩轰簬鎶撳寘鍒嗘瀽锛?
+| 鎺ュ彛 / 鍩熷悕 | 浣滅敤 | 澶勭悊鏂瑰紡 |
 |---|---|---|
-| `v.110route.cn/go/ytx/index/tagad` / `tagadall` | 悦通行自有广告位配置（开屏、弹窗、Banner） | MITM 后用 JS 把所有广告位 `state/status` 置 0、`sync/async` 清空，App 判定无广告 |
-| `ad.baihemob.com` / `inner.baihemob.com` | 百合第三方广告 SDK | REJECT |
-| `cpc-service-square.iggrowth.cn` / `cpc-service-square.yunxish.com` | CPC 广告配置拉取 | REJECT |
-| `api.yunxish.com` / `service.yunxish.com` / `logrcv.yunxish.com` / `usr-api.yunxish.com` / `tracelog-debug.yunxish.com` | 云析广告/统计/日志上报 | REJECT |
-| `yzapp-hit.110route.com` | 自家埋点 `dot.gif` | REJECT |
-| `static.shunchangzhixing.com` | 第三方监控 JS | REJECT |
+| `v.110route.cn/go/ytx/index/tagad` / `tagadall` | 鎮﹂€氳鑷湁骞垮憡浣嶉厤缃紙寮€灞忋€佸脊绐椼€丅anner锛?| MITM 鍚庣敤 JS 鎶婃墍鏈夊箍鍛婁綅 `state/status` 缃?0銆乣sync/async` 娓呯┖锛孉pp 鍒ゅ畾鏃犲箍鍛?|
+| `ad.baihemob.com` / `inner.baihemob.com` | 鐧惧悎绗笁鏂瑰箍鍛?SDK | REJECT |
+| `cpc-service-square.iggrowth.cn` / `cpc-service-square.yunxish.com` | CPC 骞垮憡閰嶇疆鎷夊彇 | REJECT |
+| `api.yunxish.com` / `service.yunxish.com` / `logrcv.yunxish.com` / `usr-api.yunxish.com` / `tracelog-debug.yunxish.com` | 浜戞瀽骞垮憡/缁熻/鏃ュ織涓婃姤 | REJECT |
+| `yzapp-hit.110route.com` | 鑷鍩嬬偣 `dot.gif` | REJECT |
+| `static.shunchangzhixing.com` | 绗笁鏂圭洃鎺?JS | REJECT |
 
-## 安装
+## 瀹夎
 
-1. 复制下面的订阅链接：
+1. 澶嶅埗涓嬮潰鐨勮闃呴摼鎺ワ細
 
    ```
-   https://raw.githubusercontent.com/ding3700/ytxqg/main/悦通行去广告.plugin
+   https://raw.githubusercontent.com/ding3700/ytxqg/main/鎮﹂€氳鍘诲箍鍛?plugin
    ```
 
-2. Loon → **插件** → 右上角 **+** → **从 URL 导入** → 粘贴链接。
+2. Loon 鈫?**鎻掍欢** 鈫?鍙充笂瑙?**+** 鈫?**浠?URL 瀵煎叆** 鈫?绮樿创閾炬帴銆?
+3. 鍚敤鎻掍欢銆?*MITM 闇€寮€鍚?*锛圠oon 浼氳嚜鍔ㄦ寜鎻掍欢鍐?`[MITM]` 閰嶇疆鎸傝浇璇佷功锛涘鏈畨瑁呰繃 Loon 璇佷功锛岃鎸夋彁绀哄畨瑁呭苟淇′换锛夈€?
+## 鏂囦欢璇存槑
 
-3. 启用插件。**MITM 需开启**（Loon 会自动按插件内 `[MITM]` 配置挂载证书；如未安装过 Loon 证书，请按提示安装并信任）。
+- `鎮﹂€氳鍘诲箍鍛?plugin` 鈥斺€?Loon 鎻掍欢涓婚厤缃?- `ytx_ad_cleaner.js` 鈥斺€?骞垮憡浣嶅搷搴旀竻鐞嗚剼鏈紙琚彃浠惰繙绋嬪紩鐢級
 
-## 文件说明
+## 澹版槑
 
-- `悦通行去广告.plugin` —— Loon 插件主配置
-- `ytx_ad_cleaner.js` —— 广告位响应清理脚本（被插件远程引用）
-
-## 声明
-
-仅供个人学习研究使用，请勿用于商业用途。
+浠呬緵涓汉瀛︿範鐮旂┒浣跨敤锛岃鍕跨敤浜庡晢涓氱敤閫斻€?

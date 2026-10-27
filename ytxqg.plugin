@@ -1,0 +1,27 @@
+﻿#!name=鎮﹂€氳鍘诲箍鍛?#!desc=鍘婚櫎鎮﹂€氳(鍦伴搧涔樿溅鐮丄PP)寮€灞忓箍鍛娿€侀椤靛脊绐?Banner骞垮憡锛屽睆钄界櫨鍚堝箍鍛奡DK(baihemob)涓庝簯鏋?yunxish/CPC)缁熻涓婃姤锛涢€氳繃娓呯┖骞垮憡浣嶉厤缃帴鍙ｅ疄鐜版棤骞垮憡锛屼笉褰卞搷涔樿溅鐮併€佸畾浣嶃€佹敮浠樼瓑鏍稿績鍔熻兘銆?#!category=鍘诲箍鍛?#!homepage=https://github.com/ding3700/ytxqg
+#!icon=https://media.ifbapp.com/favicon.ico
+#!arguments=
+
+[MITM]
+hostname = %APPEND% v.110route.cn
+
+[URL Rewrite]
+# 鈥斺€?鐧惧悎绗笁鏂瑰箍鍛?SDK锛坅d2 / init2 / infoConfig / 閿欒涓婃姤锛夆€斺€?^https?://ad\.baihemob\.com/ REJECT
+^https?://inner\.baihemob\.com/ REJECT
+
+# 鈥斺€?CPC 骞垮憡閰嶇疆鎷夊彇锛坕ggrowth / yunxish锛夆€斺€?^https?://cpc-service-square\.iggrowth\.cn/ REJECT
+^https?://cpc-service-square\.yunxish\.com/ REJECT
+
+# 鈥斺€?浜戞瀽(yunxish) 骞垮憡/缁熻/鏃ュ織涓婃姤 鈥斺€?^https?://api\.yunxish\.com/ REJECT
+^https?://service\.yunxish\.com/ REJECT
+^https?://logrcv\.yunxish\.com/ REJECT
+^https?://usr-api\.yunxish\.com/ REJECT
+^https?://tracelog-debug\.yunxish\.com/ REJECT
+
+# 鈥斺€?鎮﹂€氳鑷鍩嬬偣鎵撶偣锛坉ot.gif / time_duration.gif锛夆€斺€?^https?://yzapp-hit\.110route\.com/ REJECT
+
+# 鈥斺€?绗笁鏂圭粺璁?鐩戞帶鑴氭湰 鈥斺€?^https?://static\.shunchangzhixing\.com/ REJECT
+
+[Script]
+# 鎷︽埅鎮﹂€氳璧颁綅/寮€灞?Banner骞垮憡浣嶉厤缃紝娓呯┖涓?鏃犲箍鍛?
+http-response ^https?://v\.110route\.cn/go/ytx/index/tagad requires-body=true, script-path=https://raw.githubusercontent.com/ding3700/ytxqg/main/ytx_ad_cleaner.js, timeout=10, tag=鎮﹂€氳骞垮憡浣嶆竻鐞?
