@@ -31,5 +31,6 @@ hostname = %APPEND% v.110route.cn
 ^https?://static\.shunchangzhixing\.com/ REJECT
 
 [Script]
-# 拦截悦通行走位/开屏/Banner广告位配置，清空为"无广告"
-http-response ^https?://v\.110route\.cn/go/ytx/index/tagad requires-body=true, script-path=https://raw.githubusercontent.com/ding3700/ytxqg/main/ytx_ad_cleaner.js, timeout=10, tag=悦通行广告位清理
+# 拦截悦通行广告位配置接口（tagad / tagadall），把所有广告位清成"无广告"
+# 注意：该接口响应体是 base64 包裹的 JSON，脚本会自动识别解码，改完再按原格式回写
+http-response ^https?://v\.110route\.cn/go/ytx/index/tagad requires-body=true, max-size=0, script-path=https://raw.githubusercontent.com/ding3700/ytxqg/main/ytx_ad_cleaner_v2.js, timeout=10, tag=悦通行广告位清理
